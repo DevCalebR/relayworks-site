@@ -57,7 +57,8 @@ export const products: Product[] = [
     ],
     techStack: ["Next.js", "Twilio", "Postgres", "Prisma"],
     status: "Beta",
-    primaryCtaLabel: "Contact",
+    primaryCtaLabel: "View repo",
+    repoUrl: "https://github.com/DevCalebR/callbackcloser",
     pricingTiers: [
       {
         name: "Starter",
@@ -108,7 +109,8 @@ export const products: Product[] = [
     ],
     techStack: ["Vite", "React", "TypeScript"],
     status: "Portfolio",
-    primaryCtaLabel: "Contact",
+    primaryCtaLabel: "View repo",
+    repoUrl: "https://github.com/DevCalebR/portfolio-dashboard",
   },
   {
     slug: "usd-cad-news-alerts",
@@ -132,7 +134,8 @@ export const products: Product[] = [
     ],
     techStack: ["Python", "scheduling", "caching", "optional OANDA"],
     status: "Beta",
-    primaryCtaLabel: "Contact",
+    primaryCtaLabel: "View repo",
+    repoUrl: "https://github.com/DevCalebR/usdcad-news-alert-bot",
   },
   {
     slug: "document-expiration-tracker",
@@ -155,7 +158,9 @@ export const products: Product[] = [
     ],
     techStack: ["Generic stack"],
     status: "Waitlist",
-    primaryCtaLabel: "Join waitlist",
+    primaryCtaLabel: "View repo",
+    repoUrl:
+      "https://github.com/DevCalebR/document-expiration-tracker-and-alert-system",
   },
   {
     slug: "client-quote-generator",
@@ -179,7 +184,8 @@ export const products: Product[] = [
     ],
     techStack: ["Vite", "React", "TypeScript"],
     status: "Portfolio",
-    primaryCtaLabel: "Contact",
+    primaryCtaLabel: "View repo",
+    repoUrl: "https://github.com/DevCalebR/client-quote-generator",
   },
 ];
 
