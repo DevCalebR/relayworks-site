@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "RelayWorks refund policy for subscriptions and early-stage products.",
+  description: "RelayWorks refund policy for subscriptions and one-time products.",
   alternates: {
     canonical: "https://getrelayworks.com/refunds",
   },
@@ -37,8 +38,11 @@ export default function RefundsPage() {
         <p className="mt-2 text-sm leading-6 text-slate-600">
           Email
           {" "}
-          <a className="text-sky-700 hover:text-sky-900" href="mailto:support@getrelayworks.com">
-            support@getrelayworks.com
+          <a
+            className="text-sky-700 hover:text-sky-900"
+            href={`mailto:${siteConfig.supportEmail}`}
+          >
+            {siteConfig.supportEmail}
           </a>
           {" "}
           with account details and the reason for the request. We review requests promptly.

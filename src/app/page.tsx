@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
-import { products } from "@/content/products";
+import { getVisibleProducts } from "@/lib/products";
 
 const workflowHighlights = [
   {
@@ -26,6 +26,8 @@ const workflowHighlights = [
 ];
 
 export default function HomePage() {
+  const products = getVisibleProducts();
+
   return (
     <div className="space-y-12 sm:space-y-16">
       <section className="section-panel overflow-hidden rounded-3xl p-6 shadow-sm sm:p-10">
@@ -61,7 +63,7 @@ export default function HomePage() {
       <section className="space-y-5">
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Product portfolio
+            Product catalog
           </h2>
           <Link href="/products" className="text-sm font-semibold text-sky-700 hover:text-sky-900">
             Browse all

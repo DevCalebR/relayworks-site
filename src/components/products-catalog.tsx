@@ -26,9 +26,11 @@ export function ProductsCatalog({ products, categories }: ProductsCatalogProps) 
         normalizedQuery.length === 0
           ? true
           : [
+              product.name,
               product.byline,
               product.shortDescription,
               product.longDescription,
+              product.priceDisplay,
               ...product.techStack,
             ]
               .join(" ")

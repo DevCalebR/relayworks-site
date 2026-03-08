@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { StatusBadge } from "@/components/status-badge";
-import { getProductBySlug, products } from "@/content/products";
+import { getVisibleProductBySlug, getVisibleProducts } from "@/lib/products";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return getVisibleProducts().map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = getVisibleProductBySlug(slug);
 
   if (!product) {
     return {
@@ -36,7 +35,7 @@ export async function generateMetadata({
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = getVisibleProductBySlug(slug);
 
   if (!product) {
     notFound();
@@ -49,19 +48,35 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
             {product.category}
           </span>
-          <StatusBadge status={product.status} />
+          <span className="text-base font-semibold text-slate-900">{product.priceDisplay}</span>
         </div>
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
           {product.byline}
         </h1>
         <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">{product.longDescription}</p>
         <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            href={product.checkoutRoute}
+            className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700"
+          >
+            Buy now
+          </Link>
+          {product.appUrl ? (
+            <Link
+              href={product.appUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-slate-900 hover:text-slate-900"
+            >
+              Open app
+            </Link>
+          ) : null}
           {product.repoUrl ? (
             <Link
               href={product.repoUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700"
+              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-slate-900 hover:text-slate-900"
             >
               View repo
             </Link>
@@ -69,7 +84,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <button
               type="button"
               disabled
-              className="inline-flex cursor-not-allowed items-center rounded-full bg-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-500"
+              className="inline-flex cursor-not-allowed items-center rounded-full border border-slate-200 bg-slate-100 px-5 py-2.5 text-sm font-semibold text-slate-400"
             >
               View repo
             </button>

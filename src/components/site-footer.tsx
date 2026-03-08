@@ -11,6 +11,12 @@ export function SiteFooter() {
         </p>
 
         <nav aria-label="Footer links" className="flex flex-wrap items-center gap-3 text-sm">
+          <Link href="/contact" className="text-slate-600 hover:text-slate-900">
+            Contact
+          </Link>
+          <Link href="/sms-consent" className="text-slate-600 hover:text-slate-900">
+            SMS Consent
+          </Link>
           <Link href="/privacy" className="text-slate-600 hover:text-slate-900">
             Privacy
           </Link>

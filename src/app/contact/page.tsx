@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
-import { products } from "@/content/products";
+import { getVisibleProducts } from "@/lib/products";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact RelayWorks for product questions, waitlist access, or implementation support.",
+    "Contact RelayWorks for product questions, purchases, onboarding, or implementation support.",
   alternates: {
     canonical: "https://getrelayworks.com/contact",
   },
 };
 
 export default function ContactPage() {
+  const products = getVisibleProducts();
+
   return (
     <div className="space-y-8">
       <section className="section-panel rounded-3xl p-6 shadow-sm sm:p-8">
@@ -22,14 +25,20 @@ export default function ContactPage() {
         <div className="mt-5 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
           <p>
             <span className="font-semibold text-slate-900">General:</span>{" "}
-            <a className="text-sky-700 hover:text-sky-900" href="mailto:hello@getrelayworks.com">
-              hello@getrelayworks.com
+            <a
+              className="text-sky-700 hover:text-sky-900"
+              href={`mailto:${siteConfig.generalEmail}`}
+            >
+              {siteConfig.generalEmail}
             </a>
           </p>
           <p>
             <span className="font-semibold text-slate-900">Support:</span>{" "}
-            <a className="text-sky-700 hover:text-sky-900" href="mailto:support@getrelayworks.com">
-              support@getrelayworks.com
+            <a
+              className="text-sky-700 hover:text-sky-900"
+              href={`mailto:${siteConfig.supportEmail}`}
+            >
+              {siteConfig.supportEmail}
             </a>
           </p>
         </div>

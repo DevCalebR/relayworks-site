@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Product } from "@/content/products";
+import { siteConfig } from "@/lib/site";
 
 type ContactFormProps = {
   products: Product[];
@@ -39,7 +40,7 @@ export function ContactForm({ products }: ContactFormProps) {
       formState.message,
     ].join("\n");
 
-    const mailtoUrl = `mailto:hello@getrelayworks.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:${siteConfig.generalEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailtoUrl;
   };
@@ -88,8 +89,8 @@ export function ContactForm({ products }: ContactFormProps) {
         >
           <option value="">General inquiry</option>
           {products.map((product) => (
-            <option key={product.slug} value={product.byline}>
-              {product.byline}
+            <option key={product.slug} value={product.name}>
+              {product.name}
             </option>
           ))}
         </select>

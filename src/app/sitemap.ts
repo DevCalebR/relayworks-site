@@ -1,15 +1,19 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/content/products";
+import { getVisibleProducts } from "@/lib/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const products = getVisibleProducts();
   const baseUrl = "https://getrelayworks.com";
 
   const staticRoutes = [
     "",
     "/products",
     "/pricing",
+    "/success",
+    "/cancel",
     "/about",
     "/contact",
+    "/sms-consent",
     "/privacy",
     "/terms",
     "/refunds",
@@ -29,5 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...productEntries];
+  const buyEntries: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${baseUrl}${product.checkoutRoute}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...productEntries, ...buyEntries];
 }

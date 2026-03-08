@@ -3,6 +3,7 @@ import { Sora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNavbar } from "@/components/site-navbar";
+import { siteConfig } from "@/lib/site";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -16,7 +17,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://getrelayworks.com"),
+  metadataBase: new URL(siteConfig.siteUrl),
   title: {
     default: "RelayWorks | Automation + SaaS Products",
     template: "%s | RelayWorks",
@@ -24,19 +25,19 @@ export const metadata: Metadata = {
   description:
     "RelayWorks builds automation systems and SaaS products that help teams run cleaner, faster workflows.",
   alternates: {
-    canonical: "https://getrelayworks.com",
+    canonical: siteConfig.siteUrl,
   },
   openGraph: {
     type: "website",
-    url: "https://getrelayworks.com",
-    siteName: "RelayWorks",
-    title: "RelayWorks | Automation + SaaS Products",
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | Automation + SaaS Products`,
     description:
-      "Explore RelayWorks products across SaaS, automation, and portfolio systems.",
+      "Explore RelayWorks products across SaaS, automation, and operations tools.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RelayWorks | Automation + SaaS Products",
+    title: `${siteConfig.name} | Automation + SaaS Products`,
     description:
       "Automation-first software products by RelayWorks for real-world operations.",
   },

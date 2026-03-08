@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import { ProductsCatalog } from "@/components/products-catalog";
-import { productCategories, products } from "@/content/products";
+import { getVisibleProductCategories, getVisibleProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Browse RelayWorks products across SaaS, automation, and portfolio systems.",
+    "Browse RelayWorks products across SaaS, automation, and operations tools.",
   alternates: {
     canonical: "https://getrelayworks.com/products",
   },
 };
 
 export default function ProductsPage() {
+  const products = getVisibleProducts();
+  const categories = getVisibleProductCategories();
+
   return (
     <div className="space-y-8">
       <section className="section-panel rounded-3xl p-6 shadow-sm sm:p-8">
@@ -24,7 +27,7 @@ export default function ProductsPage() {
         </p>
       </section>
 
-      <ProductsCatalog products={products} categories={productCategories} />
+      <ProductsCatalog products={products} categories={categories} />
     </div>
   );
 }
